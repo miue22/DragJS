@@ -3,7 +3,7 @@
 이 문서는 단지 더 편리하게 재사용을 하기 위해 `JQuery`로 리팩토링한 결과물을 기록한 것입니다.
 
 #### Purpose
-<img src=""/>
+<img src='http://drive.google.com/uc?export=view&id=191dnTSZuQP0dkNWO92wdWu-EoU1dWtxs' /><br>
 
 `HTML5`에서 제공하는 `Drag&Drop API`는 특정 대상 element를 마우스로 끌어(Drag) 다른 element에 포함(Drop)시키는 기능을 합니다.  
 하지만 포함이 아닌 각 요소의 순서를 바꿀 때 사용하고 싶어 해당 기능이 가능하도록 커스터마이징하였습니다.
@@ -61,7 +61,7 @@ function onDrop(event){
 	}
 }
 ```
-<img src="" />
+<img src='http://drive.google.com/uc?export=view&id=1-K_YylxbvShUhXyvxJN_nQ_3OPMF3Ec3' /><br>
 
 Drop시 발생하는 이벤트입니다. 사진처럼 element의 길이, 양 끝 위치를 알면 가운데를 기준으로 Drop 지점이 위인지 아래인지 알 수 있습니다.
 따라서 각 경우에 대하여 렌더링합니다.
