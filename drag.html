@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	.layout-box{
+		width:300px;
+		height:100px;
+		border : solid 1px black;
+		margin-bottom : 100px;
+		text-align:center;
+		margin:auto auto 30px auto;
+		padding: 15px;	
+	}
+
+	.move-effect-top{
+		border-top : solid 10px black;
+	}
+
+	.move-effect-bottom{
+		border-bottom : solid 10px black;
+	}
+	</style>
+</head>
+<body>
+	<div id="div1" class="layout-box" draggable="true" ondragstart="onDragStart(event)" ondragenter="" ondragover="onDragOver(event)" ondragend="onDragEnd(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+		box1
+	</div>
+
+	<div id="div2" class="layout-box" draggable="true" ondragstart="onDragStart(event)" ondragenter="" ondragover="onDragOver(event)" ondragend="onDragEnd(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+		box2
+	</div>
+
+	<script	src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	<script src="./drag.js"></script>
+
+</body>
+</html>
