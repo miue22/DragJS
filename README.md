@@ -21,17 +21,21 @@
 * `dragover` : Drag가 진행중일 때 Drop할 대상 위(over)에서 발생하는 이벤트
 * `drop` : Drag 된 대상이 Drop될 때 발생하는 이벤트
 
+참고로, JQuery를 이용해 `.on()`, `bind()` 등의 이벤트 바인딩 함수를 사용 할 때는 `dragEvent`가 온전히 전달되지 않습니다.  
+왜냐하면 JQuery에서는 이벤트 바인딩시 `event`객체가 아닌 `JQuery.event`객체를 전달하기 때문이다.
+(일반적인 이벤트의 경우는 동일하게 사용해도 무방하나, `DragEvent`는 지원하지 않는 듯.)
+따라서 `var event = event.originalEvent;`와 같이 `event.originalEvent`를 통해 사용해야 합니다.
 ### Function
 1. onDragStart(event)
 ```
 function onDragStart(event){
   event.dataTransfer.setData("text/plain", event.target.id);
-	//드래그하려는 타겟의 id를 dataTransfer에 등록
+  //드래그하려는 타겟의 id를 dataTransfer에 등록
 }
 ```
 Drag가 시작되는 시점입니다. Drag할 때 발생하는 `DragEvent`는 여타 event와는 다르게 객체 내에 `dataTransfer` 속성이 존재합니다. 
 이 속성은 특정 대상 element를 Drag할 때 데이터를 담을 수 있는 속성입니다.  
-필수적으로 `setData({key}, {data})`함수를 사용해야 합니다. 자세한 스펙은 [dataTransfer](https://developer.mozilla.org/ko/docs/Web/API/DataTransfer)에서 확인할 수 있습니다. 
+필수적으로 `setData({format}, {data})`함수를 사용해야 합니다. 자세한 스펙은 [dataTransfer](https://developer.mozilla.org/ko/docs/Web/API/DataTransfer)에서 확인할 수 있습니다. 
 
 2. onDragOver(event)
 ```
@@ -48,27 +52,33 @@ Drag 중 밀리 초 단위로 계속 발생하는 이벤트입니다.
 function onDrop(event){
   var id = event.dataTransfer.getData("text/plain");
 
-	var top = $(event.target).closest(".layout-box").position().top; //Drop할 요소의 top
-	var height = $(event.target).closest(".layout-box").height(); //Drop할 요소의 길이(세로)
-	var dot = event.y; // 현재 Drag가 머물러있는 점의 좌표
-	var dot_in_element = dot - top; // 요소 안에서의 점의 좌표
+  var top = $(event.target).closest(".layout-box").position().top; //Drop할 요소의 top
+  var height = $(event.target).closest(".layout-box").height(); //Drop할 요소의 길이(세로)
+  var dot = event.y; // 현재 Drag가 머물러있는 점의 좌표
+  var dot_in_element = dot - top; // 요소 안에서의 점의 좌표
 
-	if(dot_in_element >= height/2 ){
-		$(event.target).closest(".layout-box").after($("#"+id));
-	}
-	else if(dot_in_element < height/2 ){
-		$(event.target).closest(".layout-box").before($("#"+id));
-	}
+  if(dot_in_element >= height/2 ){
+	$(event.target).closest(".layout-box").after($("#"+id));
+  }
+  else if(dot_in_element < height/2 ){
+	$(event.target).closest(".layout-box").before($("#"+id));
+  }
 }
 ```
 <img src='http://drive.google.com/uc?export=view&id=1-K_YylxbvShUhXyvxJN_nQ_3OPMF3Ec3' /><br>
 
-Drop시 발생하는 이벤트입니다. 사진처럼 element의 길이, 양 끝 위치를 알면 가운데를 기준으로 Drop 지점이 위인지 아래인지 알 수 있습니다.
+Drop시 발생하는 이벤트입니다. 
+우선 `dataTransfer`객체에서 `onDragStart` 이벤트 때 담은 데이터를 불러옵니다. 이 역시 필수적으로 `getDta('format')`함수를 사용해야 합니다.
+사진처럼 element의 길이, 양 끝 위치를 알면 가운데를 기준으로 Drop 지점이 위인지 아래인지 알 수 있습니다.
 따라서 각 경우에 대하여 렌더링합니다.
 
 
 ### Example
 예제는 `drag.js`와 `drag.html`에 있습니다.
+
+### Reference
+* [HTML드래그 앤 드롭 API](https://developer.mozilla.org/ko/docs/Web/API/HTML_%EB%93%9C%EB%9E%98%EA%B7%B8_%EC%95%A4_%EB%93%9C%EB%A1%AD_API)
+
 
 by HTML, CSS, Javascript, JQuery
 2018.05.20 Jun Kim
