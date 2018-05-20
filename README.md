@@ -1,14 +1,14 @@
-## DragJS
+# DragJS
 해당 기능은 `HTML5`에서 기본적으로 지원하는 API입니다.  따라서 `HTML`과 `Plain Javasciprt`로 충분히 구현할 수 있습니다.
 이 문서는 단지 더 편리하게 재사용을 하기 위해 `JQuery`로 리팩토링한 결과물을 기록한 것입니다.
 
-#### Purpose
+### Purpose
 <img src='http://drive.google.com/uc?export=view&id=191dnTSZuQP0dkNWO92wdWu-EoU1dWtxs' /><br>
 
 `HTML5`에서 제공하는 `Drag&Drop API`는 특정 대상 element를 마우스로 끌어(Drag) 다른 element에 포함(Drop)시키는 기능을 합니다.  
 하지만 포함이 아닌 각 요소의 순서를 바꿀 때 사용하고 싶어 해당 기능이 가능하도록 커스터마이징하였습니다.
 
-#### Description
+### Description
 `HTML`의 element는 기본적으로 드래그가 불가능하게 설정되어 있습니다.  
 따라서 element에 `draggable="true"`가 선언되어야 기능이 동작합니다.
 ```
@@ -21,7 +21,7 @@
 * `dragover` : Drag가 진행중일 때 Drop할 대상 위(over)에서 발생하는 이벤트
 * `drop` : Drag 된 대상이 Drop될 때 발생하는 이벤트
 
-#### Function
+### Function
 1. onDragStart(event)
 ```
 function onDragStart(event){
@@ -67,7 +67,7 @@ Drop시 발생하는 이벤트입니다. 사진처럼 element의 길이, 양 끝
 따라서 각 경우에 대하여 렌더링합니다.
 
 
-#### Example
+### Example
 예제는 `drag.js`와 `drag.html`에 있습니다.
 
 by HTML, CSS, Javascript, JQuery
