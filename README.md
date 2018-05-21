@@ -68,9 +68,10 @@ function onDrop(event){
 <img src='http://drive.google.com/uc?export=view&id=1-K_YylxbvShUhXyvxJN_nQ_3OPMF3Ec3' /><br>
 
 Drop시 발생하는 이벤트입니다. 
-우선 `dataTransfer`객체에서 `onDragStart` 이벤트 때 담은 데이터를 불러옵니다. 이 역시 필수적으로 `getDta('format')`함수를 사용해야 합니다.
-사진처럼 element의 길이, 양 끝 위치를 알면 가운데를 기준으로 Drop 지점이 위인지 아래인지 알 수 있습니다.
-따라서 각 경우에 대하여 렌더링합니다.
+우선 `dataTransfer`객체에서 `onDragStart` 이벤트 때 담은 데이터를 불러옵니다. 이 역시 필수적으로 `getDta('format')`함수를 사용해야 합니다.  
+사진처럼 element의 길이, 양 끝 위치를 알면 가운데를 기준으로 Drop 지점이 위인지 아래인지 알 수 있습니다.  
+Drop 지점이 위라면 해당 element의 이전 구간에 `element.before( drag element )`를 통하여 렌더링합니다.
+반대로 아래라면 다음 구간에 `element.after( drag element )`을 통하여 렌더링합니다. 
 
 
 ### Example
